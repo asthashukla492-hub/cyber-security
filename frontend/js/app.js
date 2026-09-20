@@ -456,7 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
           const res = await CyberAPI.analyzeVoice({
-            audioBase64: state.recordedAudioData.base64,
+            audioBlob: state.recordedAudioData.blob,
             fileName: 'live_interception.webm'
           });
           renderVoiceDiagnostics(res.data);
