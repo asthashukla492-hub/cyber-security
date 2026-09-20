@@ -3,9 +3,7 @@
  * Enterprise Cybersecurity & Voice-Cloning Defense Gateway
  */
 
-const API_BASE = window.location.origin.includes(':5000') 
-  ? '/api' 
-  : 'http://localhost:5000/api';
+const API_BASE = 'https://cyber-security-backend-ff66.onrender.com/api';
 
 const CyberAPI = {
   // Check backend server health and status
