@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberShield | Enterprise Threat Intelligence & Voice-Cloning Defense</title>
+  <meta name="description" content="Next-generation cybersecurity platform combining multi-factor threat detection, deepfake voice-cloning defense, and immutable blockchain ledger notarization.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="cyber-theme">
+  <!-- Cyber Background FX -->
+  <div class="cyber-grid-bg"></div>
+  <div class="cyber-ambient-glow glow-1"></div>
+  <div class="cyber-ambient-glow glow-2"></div>
+
+  <!-- Notification Toast Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Main Application Wrapper -->
+  <div class="app-container">
+    <!-- Top Navigation Header -->
+    <header class="cyber-header">
+      <div class="header-left">
+        <div class="brand-container">
+          <div class="brand-shield-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2.2"/>
+            </svg>
+            <span class="shield-pulse"></span>
+          </div>
+          <div class="brand-text">
+            <div class="brand-title">CYBER<span class="highlight">SHIELD</span> <span class="version-tag">v2.4 CORE</span></div>
+            <div class="brand-subtitle">AI THREAT INTEL &bull; DEEPFAKE VOICE DEFENSE &bull; BLOCKCHAIN LEDGER</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="cyber-nav" role="navigation" aria-label="Main Navigation">
+        <button class="nav-tab active" data-tab="overview" id="tab-overview">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </button>
+        <button class="nav-tab" data-tab="voice-lab" id="tab-voice-lab">
+          <span class="tab-badge-pulse"></span>
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          Voice-Clone Lab
+        </button>
+        <button class="nav-tab" data-tab="threat-scanner" id="tab-threat-scanner">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Threat Scanner
+        </button>
+        <button class="nav-tab" data-tab="blockchain-ledger" id="tab-blockchain-ledger">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          Blockchain Ledger
+        </button>
+        <button class="nav-tab" data-tab="mitre-intel" id="tab-mitre-intel">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          MITRE & Intel
+        </button>
+      </nav>
+
+      <div class="header-right">
+        <!-- Live Status Indicators -->
+        <div class="status-pill status-online" id="api-status-pill" title="Backend API Operational">
+          <span class="status-dot"></span>
+          <span class="status-label" id="api-status-label">API ONLINE</span>
+        </div>
+        <div class="status-pill status-blockchain" title="Sepolia Testnet Ledger Synchronized">
+          <span class="chain-icon">⛓️</span>
+          <span class="chain-network" id="network-status-label">SEPOLIA TESTNET</span>
+        </div>
+        <!-- Live UTC Clock -->
+        <div class="utc-clock" id="utc-clock">00:00:00 UTC</div>
+      </div>
+    </header>
+
+    <!-- Content View Container -->
+    <main class="cyber-main" id="main-content">
+      
+      <!-- ========================================== -->
+      <!-- TAB 1: OVERVIEW DASHBOARD -->
+      <!-- ========================================== -->
+      <section class="tab-content active" id="view-overview">
+        <!-- Alert Banner -->
+        <div class="security-banner">
+          <div class="banner-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div class="banner-content">
+            <div class="banner-title">ACTIVE SENTINEL PROTECTION: <strong>DEFCON 3 (ELEVATED SURVEILLANCE)</strong></div>
+            <div class="banner-desc">Real-time deepfake speech synthesis filtering active. All intercepted threat hashes cryptographically notarized to Ethereum ledger.</div>
+          </div>
+          <div class="banner-action">
+            <button class="btn btn-outline-cyan btn-sm" id="btn-quick-voice-jump">Launch Voice Shield</button>
+          </div>
+        </div>
+
+        <!-- Metrics Stats Row -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">THREATS INTERCEPTED</span>
+              <span class="stat-icon-wrap icon-cyan">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </span>
+            </div>
+            <div class="stat-value" id="stat-threats-total">0</div>
+            <div class="stat-footer">
+              <span class="trend-up">Live Engine</span>
+              <span class="stat-sub">Zero-day heuristics</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">DEEPFAKE VOICES DEFLECTED</span>
+              <span class="stat-icon-wrap icon-pink">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+              </span>
+            </div>
+            <div class="stat-value" id="stat-voice-total">0</div>
+            <div class="stat-footer">
+              <span class="trend-alert">Biometric Guard</span>
+              <span class="stat-sub">Diffusion & TTS Models</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">BLOCKCHAIN PROOFS ANCHORED</span>
+              <span class="stat-icon-wrap icon-emerald">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              </span>
+            </div>
+            <div class="stat-value" id="stat-blockchain-total">0</div>
+            <div class="stat-footer">
+              <span class="trend-up">Cryptographic Sync</span>
+              <span class="stat-sub">Keccak-256 Ledger</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">DETECTION RESPONSE TIME</span>
+              <span class="stat-icon-wrap icon-amber">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </span>
+            </div>
+            <div class="stat-value">14.8 <span class="unit">ms</span></div>
+            <div class="stat-footer">
+              <span class="trend-fast">Ultra-Low Latency</span>
+              <span class="stat-sub">Edge heuristic pipeline</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Two-Column Split -->
+        <div class="dashboard-split-grid">
+          <!-- Left: Quick Threat Scan & Live Posture -->
+          <div class="panel cyber-panel">
+            <div class="panel-header">
+              <div class="panel-title-wrap">
+                <span class="panel-dot"></span>
+                <h3 class="panel-title">LIVE THREAT INDICATOR SCANNER</h3>
+              </div>
+              <span class="panel-badge">HEURISTIC v4.2</span>
+            </div>
+            <div class="panel-body">
+              <p class="panel-instruction">Enter any suspicious URL, domain, IP address, file hash, or scam message for multi-vector threat scoring:</p>
+              
+              <div class="quick-input-group">
+                <div class="input-with-icon">
+                  <svg class="input-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <input type="text" id="quick-scan-input" placeholder="e.g. metamask-verify-crypto.xyz, 194.26.29.112 or SHA256..." autocomplete="off">
+                </div>
+                <button class="btn btn-cyan" id="btn-quick-scan">
+                  <span>Analyze Target</span>
+                  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+              </div>
+
+              <!-- Quick Result Container (dynamic) -->
+              <div id="quick-scan-result" class="scan-result-card hidden"></div>
+            </div>
+          </div>
+
+
+          <!-- Right: Live Threat Stream & Notarizations -->
+          <div class="panel cyber-panel">
+            <div class="panel-header">
+              <div class="panel-title-wrap">
+                <span class="panel-dot pulse-red"></span>
+                <h3 class="panel-title">REAL-TIME THREAT RADAR</h3>
+              </div>
+              <button class="btn-icon" id="btn-refresh-feed" title="Refresh Stream">
+                <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" fill="none"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+              </button>
+            </div>
+            <div class="panel-body no-padding">
+              <div class="threat-stream-list" id="overview-threat-stream">
+                <!-- Dynamically populated via JS -->
+                <div class="stream-loading">
+                  <div class="cyber-spinner"></div>
+                  <span>Syncing with CyberShield Intelligence Feed...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- System Architecture & Protection Flow -->
+        <div class="architecture-card">
+          <div class="arch-col">
+            <div class="arch-step-num">01</div>
+            <div class="arch-info">
+              <h4>Inbound Ingestion</h4>
+              <p>Network packets, live VoIP audio streams, DNS resolutions, and payload buffers.</p>
+            </div>
+          </div>
+          <div class="arch-arrow">➔</div>
+          <div class="arch-col">
+            <div class="arch-step-num">02</div>
+            <div class="arch-info">
+              <h4>Acoustic & Heuristic Engine</h4>
+              <p>FFT spectral analysis, synthetic artifacts detection, Shannon entropy & typosquatting.</p>
+            </div>
+          </div>
+          <div class="arch-arrow">➔</div>
+          <div class="arch-col">
+            <div class="arch-step-num">03</div>
+            <div class="arch-info">
+              <h4>Blockchain Notarization</h4>
+              <p>Cryptographic Keccak-256 hash anchored to Ethereum Sepolia ledger for non-repudiation.</p>
+            </div>
+          </div>
+          <div class="arch-arrow">➔</div>
+          <div class="arch-col">
+            <div class="arch-step-num">04</div>
+            <div class="arch-info">
+              <h4>Zero-Trust Deflection</h4>
+              <p>Automated session termination, biometric revocation, and SOC alert escalation.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- TAB 2: VOICE-CLONING & DEEPFAKE AUDIO LAB -->
+      <!-- ========================================== -->
+      <section class="tab-content" id="view-voice-lab">
+        <div class="section-intro">
+          <div class="intro-badge">ACOUSTIC BIOMETRIC DEFENSE ENGINE</div>
+          <h2>Voice-Cloning & Deepfake Audio Protection Lab</h2>
+          <p>Inspect incoming voice audio, phone calls, or audio files to detect synthetic neural voice synthesis (ElevenLabs, Bark, Tortoise-TTS, RVC V2) with spectral anomaly forensics and blockchain proof notarization.</p>
+        </div>
+
+        <!-- Voice Lab Grid -->
+        <div class="voice-lab-grid">
+          
+          <!-- Input Column: Microphone & File Upload -->
+          <div class="voice-input-card cyber-panel">
+            <div class="panel-header">
+              <div class="panel-title-wrap">
+                <span class="panel-dot"></span>
+                <h3 class="panel-title">AUDIO INGESTION</h3>
+              </div>
+              <div class="toggle-mode-pills">
+                <button class="pill-btn active" id="btn-mode-mic">Live Mic</button>
+                <button class="pill-btn" id="btn-mode-upload">File Upload</button>
+              </div>
+            </div>
+
+            <div class="panel-body">
+              <!-- Mode 1: Live Microphone Recording -->
+              <div id="voice-mic-section" class="voice-mode-block">
+                <div class="audio-canvas-container">
+                  <canvas id="audio-visualizer" width="500" height="140"></canvas>
+                  <div class="canvas-overlay-time" id="recording-timer">00:00.0</div>
+                </div>
+
+                <div class="mic-controls-row">
+                  <button class="btn btn-record" id="btn-toggle-record">
+                    <span class="record-pulse-ring"></span>
+                    <span class="record-icon">●</span>
+                    <span id="record-btn-text">Start Mic Interception</span>
+                  </button>
+                  <button class="btn btn-cyan btn-disabled" id="btn-analyze-mic" disabled>
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    <span>Analyze Recorded Speech</span>
+                  </button>
+                </div>
+                <div class="audio-playback-row hidden" id="mic-playback-container">
+                  <span class="playback-label">Preview Recording:</span>
+                  <audio id="mic-audio-player" controls></audio>
+                </div>
+              </div>
+
+              <!-- Mode 2: Audio File Upload -->
+              <div id="voice-upload-section" class="voice-mode-block hidden">
+                <div class="dropzone" id="audio-dropzone">
+                  <input type="file" id="audio-file-input" accept="audio/*,.wav,.mp3,.ogg,.webm,.m4a" class="file-input-hidden">
+                  <div class="dropzone-icon">
+                    <svg viewBox="0 0 24 24" width="42" height="42" stroke="currentColor" stroke-width="1.8" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="21" x2="12" y2="15"/></svg>
+                  </div>
+                  <div class="dropzone-text">
+                    <strong>Drag & drop an audio sample here</strong>
+                    <span>or <label for="audio-file-input" class="browse-link">browse files</label> (WAV, MP3, OGG, WebM)</span>
+                  </div>
+                  <div class="dropzone-selected-file hidden" id="selected-file-name"></div>
+                </div>
+                <div class="upload-action-row">
+                  <button class="btn btn-cyan btn-block btn-disabled" id="btn-analyze-file" disabled>
+                    Run Forensic Deepfake Analysis
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Output Column: Deep Diagnostics & Forensics -->
+          <div class="voice-diagnostics-card cyber-panel">
+            <div class="panel-header">
+              <div class="panel-title-wrap">
+                <span class="panel-dot"></span>
+                <h3 class="panel-title">FORENSIC ACOUSTIC ANALYSIS</h3>
+              </div>
+              <div id="voice-verdict-badge" class="verdict-pill verdict-pending">READY FOR INPUT</div>
+            </div>
+
+            <div class="panel-body">
+              <!-- Placeholder State -->
+              <div id="voice-placeholder-state" class="empty-state">
+                <div class="radar-pulse-anim">
+                  <div class="circle circle-1"></div>
+                  <div class="circle circle-2"></div>
+                  <div class="circle circle-3"></div>
+                  <svg viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="1.8" fill="none"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+                </div>
+                <h4>Awaiting Voice Sample Ingestion</h4>
+                <p>Record your microphone voice or upload an audio sample to reveal spectrogram jitter, harmonic ratio, zero-crossing anomalies, and neural voice synthesis signatures.</p>
+              </div>
+
+              <!-- Diagnostics Results Display (hidden initially) -->
+              <div id="voice-results-container" class="diagnostics-content hidden">
+                <!-- Top Gauge Row -->
+                <div class="gauges-flex-row">
+                  <!-- Authenticity Gauge -->
+                  <div class="radial-gauge-card">
+                    <div class="radial-gauge-wrap">
+                      <svg class="radial-svg" viewBox="0 0 120 120">
+                        <circle class="radial-bg" cx="60" cy="60" r="50"></circle>
+                        <circle class="radial-meter" id="authenticity-radial" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="314"></circle>
+                      </svg>
+                      <div class="radial-center-text">
+                        <div class="radial-percent" id="voice-auth-score">0%</div>
+                        <div class="radial-caption">AUTHENTICITY</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Synthetic Risk Status Card -->
+                  <div class="risk-verdict-card">
+                    <div class="card-kicker">SYNTHETIC THREAT LEVEL</div>
+                    <div class="risk-tier" id="voice-risk-tier">CRITICAL</div>
+                    <div class="verdict-summary" id="voice-verdict-summary">High Probability Synthetic Voice Clone (AI-Generated)</div>
+                    <div class="confidence-tag">Detection Confidence: <strong id="voice-confidence-val">98%</strong></div>
+                  </div>
+                </div>
+
+                <!-- Acoustic Forensic Metrics Grid -->
+                <div class="acoustic-metrics-grid">
+                  <div class="metric-box">
+                    <div class="metric-name">Pitch Jitter</div>
+                    <div class="metric-val" id="metric-jitter">0.12%</div>
+                    <div class="metric-bar"><div class="bar-fill" id="bar-jitter" style="width: 20%"></div></div>
+                    <div class="metric-sub" id="sub-jitter">Unnaturally flat / robotic</div>
+                  </div>
+
+                  <div class="metric-box">
+                    <div class="metric-name">Amplitude Shimmer</div>
+                    <div class="metric-val" id="metric-shimmer">0.24%</div>
+                    <div class="metric-bar"><div class="bar-fill" id="bar-shimmer" style="width: 30%"></div></div>
+                    <div class="metric-sub" id="sub-shimmer">Neural phase vocoder</div>
+                  </div>
+
+                  <div class="metric-box">
+                    <div class="metric-name">Zero-Crossing Rate</div>
+                    <div class="metric-val" id="metric-zcr">0.042</div>
+                    <div class="metric-bar"><div class="bar-fill" id="bar-zcr" style="width: 45%"></div></div>
+                    <div class="metric-sub" id="sub-zcr">Spectral flux threshold</div>
+                  </div>
+
+                  <div class="metric-box">
+                    <div class="metric-name">Harmonic Ratio</div>
+                    <div class="metric-val" id="metric-hnr">0.78</div>
+                    <div class="metric-bar"><div class="bar-fill" id="bar-hnr" style="width: 78%"></div></div>
+                    <div class="metric-sub" id="sub-hnr">Synthetic vocoder noise</div>
+                  </div>
+                </div>
+
+                <!-- Anomaly Markers List -->
+                <div class="anomaly-section">
+                  <div class="anomaly-title">Detected Neural & Acoustic Anomaly Signatures:</div>
+                  <div class="anomaly-tags" id="voice-anomaly-tags">
+                    <!-- Populated dynamically -->
+                  </div>
+                </div>
+
+                <!-- Security Recommendation Box -->
+                <div class="recommendation-box" id="voice-recommendation-box">
+                  <div class="rec-icon">🛡️</div>
+                  <div class="rec-body">
+                    <strong>Mitigation Directive:</strong>
+                    <div id="voice-rec-text">DO NOT authorize voice-biometric actions. Re-authenticate caller via secondary multi-factor channel.</div>
+                  </div>
+                </div>
+
+                <!-- Blockchain Notarization Receipt Card -->
+                <div class="blockchain-receipt-card">
+                  <div class="receipt-header">
+                    <span class="chain-badge">⛓️ ANCHORED TO BLOCKCHAIN</span>
+                    <span class="receipt-time" id="receipt-time">Just now</span>
+                  </div>
+                  <div class="receipt-grid">
+                    <div class="receipt-field">
+                      <span class="field-label">Cryptographic Event Hash:</span>
+                      <span class="field-val hash-mono" id="receipt-event-hash">0x0000000000000000000000000000000000000000</span>
+                      <button class="btn-copy" data-copy="receipt-event-hash" title="Copy Hash">📋</button>
+                    </div>
+                    <div class="receipt-field">
+                      <span class="field-label">Sepolia Ledger Tx Hash:</span>
+                      <span class="field-val hash-mono" id="receipt-tx-hash">0x0000000000000000000000000000000000000000</span>
+                      <button class="btn-copy" data-copy="receipt-tx-hash" title="Copy Hash">📋</button>
+                    </div>
+                    <div class="receipt-meta-row">
+                      <span>Block Height: <strong id="receipt-block-num">#18452102</strong></span>
+                      <span>Contract: <code id="receipt-contract">0x742d...44e</code></span>
+                      <span class="status-verified">✓ Tamper-Proof Verified</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Voice Analysis History Table -->
+        <div class="panel cyber-panel mt-4">
+          <div class="panel-header">
+            <div class="panel-title-wrap">
+              <span class="panel-dot"></span>
+              <h3 class="panel-title">RECENT VOICE-CLONE AUDIT LOGS</h3>
+            </div>
+            <button class="btn btn-outline btn-sm" id="btn-refresh-voice-history">Refresh History</button>
+          </div>
+          <div class="panel-body no-padding">
+            <div class="table-responsive">
+              <table class="cyber-table" id="voice-history-table">
+                <thead>
+                  <tr>
+                    <th>Audio Sample</th>
+                    <th>Format & Size</th>
+                    <th>Authenticity</th>
+                    <th>Synthetic Risk</th>
+                    <th>Verdict</th>
+                    <th>Blockchain Event Hash</th>
+                    <th>Timestamp</th>
+                  </tr>
+                </thead>
+                <tbody id="voice-history-body">
+                  <!-- Populated via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- TAB 3: MULTI-FACTOR THREAT SCANNER -->
+      <!-- ========================================== -->
+      <section class="tab-content" id="view-threat-scanner">
+        <div class="section-intro">
+          <div class="intro-badge">HEURISTIC & OSINT INSPECTOR</div>
+          <h2>Multi-Vector Threat Intelligence Engine</h2>
+          <p>Scan arbitrary digital artifacts: suspicious web links, IP addresses, command & control nodes, file hashes, and social engineering phishing text.</p>
+        </div>
+
+        <!-- Scanner Card -->
+        <div class="panel cyber-panel">
+          <div class="panel-body">
+            <div class="scanner-input-wrapper">
+              <label for="threat-input" class="scanner-label">TARGET ARTIFACT OR INDICATOR OF COMPROMISE (IOC):</label>
+              <div class="scanner-input-row">
+                <input type="text" id="threat-input" class="cyber-large-input" placeholder="Paste URL (https://...), IP (185.220...), SHA256 hash, or phishing message..." autocomplete="off">
+                <button class="btn btn-cyan btn-lg" id="btn-run-full-scan">
+                  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <span>Execute Threat Scan</span>
+                </button>
+              </div>
+
+              <!-- Filter Selector Pills -->
+              <div class="scanner-type-row">
+                <span class="type-hint">Detected or Override Type:</span>
+                <div class="type-pills">
+                  <button class="type-pill active" data-type="auto">Auto-Detect</button>
+                  <button class="type-pill" data-type="url">URL</button>
+                  <button class="type-pill" data-type="ip">IP Address</button>
+                  <button class="type-pill" data-type="domain">Domain</button>
+                  <button class="type-pill" data-type="hash">File Hash</button>
+                  <button class="type-pill" data-type="text">Social Engineering Text</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scan Result Full Card (Hidden until scan executed) -->
+        <div id="threat-full-result" class="threat-detailed-result hidden mt-4">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <!-- Threat Scan History Table -->
+        <div class="panel cyber-panel mt-4">
+          <div class="panel-header">
+            <div class="panel-title-wrap">
+              <span class="panel-dot"></span>
+              <h3 class="panel-title">GLOBAL THREAT INTERCEPT AUDIT LOG</h3>
+            </div>
+            <button class="btn btn-outline btn-sm" id="btn-refresh-threat-history">Refresh Log</button>
+          </div>
+          <div class="panel-body no-padding">
+            <div class="table-responsive">
+              <table class="cyber-table" id="threat-history-table">
+                <thead>
+                  <tr>
+                    <th>Indicator / Target</th>
+                    <th>Type</th>
+                    <th>Threat Score</th>
+                    <th>Severity</th>
+                    <th>Classification</th>
+                    <th>Blockchain Proof</th>
+                    <th>Timestamp</th>
+                  </tr>
+                </thead>
+                <tbody id="threat-history-body">
+                  <!-- Populated via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- TAB 4: BLOCKCHAIN NOTARIZATION LEDGER -->
+      <!-- ========================================== -->
+      <section class="tab-content" id="view-blockchain-ledger">
+        <div class="section-intro">
+          <div class="intro-badge">ETHEREUM SEPOLIA LEDGER & VERIFIER</div>
+          <h2>Cryptographic Security Event Ledger</h2>
+          <p>Every detected threat and voice-clone incident is sealed with a Keccak-256 cryptographic digest and written to the distributed ledger for immutable evidentiary compliance.</p>
+        </div>
+
+        <!-- Ledger Stats Row -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">SYNC STATUS</span>
+              <span class="stat-icon-wrap icon-emerald">⚡</span>
+            </div>
+            <div class="stat-value text-emerald">SYNCHRONIZED</div>
+            <div class="stat-footer">
+              <span class="stat-sub" id="ledger-net-name">Ethereum Sepolia Testnet</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">CURRENT BLOCK HEIGHT</span>
+              <span class="stat-icon-wrap icon-cyan">📦</span>
+            </div>
+            <div class="stat-value" id="ledger-block-height">#18,452,108</div>
+            <div class="stat-footer">
+              <span class="stat-sub">~12.2s block time</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">ANCHORED RECORDS</span>
+              <span class="stat-icon-wrap icon-pink">🔒</span>
+            </div>
+            <div class="stat-value" id="ledger-total-records">0</div>
+            <div class="stat-footer">
+              <span class="stat-sub">Immutable audit entries</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">SECURITY SMART CONTRACT</span>
+              <span class="stat-icon-wrap icon-amber">📜</span>
+            </div>
+            <div class="stat-value text-sm hash-mono">0x742d...44e</div>
+            <div class="stat-footer">
+              <span class="stat-sub">CyberShieldRegistry.sol</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Transaction Proof Verifier -->
+        <div class="panel cyber-panel mt-4">
+          <div class="panel-header">
+            <div class="panel-title-wrap">
+              <span class="panel-dot"></span>
+              <h3 class="panel-title">VERIFY TRANSACTION INTEGRITY & CRYPTOGRAPHIC PROOF</h3>
+            </div>
+          </div>
+          <div class="panel-body">
+            <p class="panel-instruction">Validate non-repudiation and chain timestamp by entering any Sepolia Transaction Hash or Event Hash:</p>
+            <div class="quick-input-group">
+              <input type="text" id="verify-tx-input" placeholder="Enter Transaction Hash (0x992b8c9d... or 0x3a89e9f1...)" autocomplete="off">
+              <button class="btn btn-cyan" id="btn-verify-tx">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span>Verify Proof</span>
+              </button>
+            </div>
+
+            <!-- Proof Verification Output -->
+            <div id="tx-verification-result" class="verification-box hidden"></div>
+          </div>
+        </div>
+
+        <!-- Ledger Entries Table -->
+        <div class="panel cyber-panel mt-4">
+          <div class="panel-header">
+            <div class="panel-title-wrap">
+              <span class="panel-dot"></span>
+              <h3 class="panel-title">DISTRIBUTED SECURITY EVENT LEDGER</h3>
+            </div>
+            <button class="btn btn-outline btn-sm" id="btn-refresh-ledger">Sync Ledger</button>
+          </div>
+          <div class="panel-body no-padding">
+            <div class="table-responsive">
+              <table class="cyber-table">
+                <thead>
+                  <tr>
+                    <th>Event Type</th>
+                    <th>Target / Sample</th>
+                    <th>Risk Score</th>
+                    <th>Severity</th>
+                    <th>Event Hash (Keccak-256)</th>
+                    <th>Tx Hash</th>
+                    <th>Block #</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="ledger-table-body">
+                  <!-- Populated via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- TAB 5: MITRE ATT&CK & THREAT INTEL FEED -->
+      <!-- ========================================== -->
+      <section class="tab-content" id="view-mitre-intel">
+        <div class="section-intro">
+          <div class="intro-badge">ADVERSARY TACTICS & INTELLIGENCE</div>
+          <h2>MITRE ATT&CK Framework & Global Threat Matrix</h2>
+          <p>Correlation of live intercepted payloads and deepfake biometric attacks against standard MITRE ATT&CK tactical techniques.</p>
+        </div>
+
+        <!-- MITRE Matrix Grid -->
+        <div class="mitre-grid" id="mitre-cards-container">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <!-- Active Threat Advisory Feed -->
+        <div class="panel cyber-panel mt-4">
+          <div class="panel-header">
+            <div class="panel-title-wrap">
+              <span class="panel-dot pulse-red"></span>
+              <h3 class="panel-title">GLOBAL THREAT INTELLIGENCE FEED</h3>
+            </div>
+            <span class="panel-badge">LIVE UPDATES</span>
+          </div>
+          <div class="panel-body no-padding">
+            <div class="threat-stream-list" id="intel-feed-full">
+              <!-- Populated via JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="cyber-footer">
+      <div class="footer-left">
+        <span class="footer-brand">CYBERSHIELD CORE DEFENSE</span> &bull; 
+        <span>Autonomous Biometric & Threat Detection Fabric</span>
+      </div>
+      <div class="footer-center">
+        <span class="shield-indicator">●</span> Cryptographically notarized on <span class="footer-net">Ethereum Sepolia</span>
+      </div>
+      <div class="footer-right">
+        <span>Session: <strong id="session-id">SEC-491-NODE</strong></span> &bull; 
+        <span>Latency: <strong class="text-cyan">14ms</strong></span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Proof Verification Modal -->
+  <div class="modal-overlay hidden" id="proof-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">🛡️ Cryptographic Proof Certificate</h3>
+        <button class="btn-close-modal" id="btn-close-modal">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-proof-body">
+        <!-- Content injected dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="btn-copy-certificate">Copy Certificate JSON</button>
+        <button class="btn btn-cyan" id="btn-dismiss-modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/voiceVisualizer.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
