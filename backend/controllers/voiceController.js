@@ -29,7 +29,7 @@ const analyzeVoice = async (req, res) => {
     }
 
     // Run acoustic deepfake analysis engine
-    const analysis = analyzeAudioBuffer(buffer, fileName, mimeType);
+    const analysis = await analyzeAudioBuffer(buffer, fileName, mimeType);
 
 
     // Anchor voice cloning risk analysis to Blockchain
