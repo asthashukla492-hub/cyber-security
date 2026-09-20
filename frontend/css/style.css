@@ -1824,3 +1824,237 @@ html, body {
     grid-template-columns: 1fr;
   }
 }
+/* =========================================
+   CYBERSHIELD RESPONSIVE DESIGN
+   ========================================= */
+
+/* Prevent horizontal overflow */
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Make media responsive */
+img,
+video,
+canvas,
+svg {
+    max-width: 100%;
+}
+
+audio {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* ---------- TABLET ---------- */
+@media (max-width: 1024px) {
+
+    .container,
+    .main-container,
+    .content,
+    .dashboard {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .grid,
+    .cards,
+    .dashboard-grid,
+    .features-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .two-column,
+    .split-layout,
+    .analysis-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 768px) {
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        width: 100%;
+        min-width: 0;
+        overflow-x: hidden;
+    }
+
+    /* Main containers */
+    .container,
+    .main-container,
+    .content,
+    .dashboard,
+    main {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    /* Navigation */
+    nav,
+    .navbar,
+    .nav-container {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    /* Hide desktop-only elements */
+    .desktop-only {
+        display: none !important;
+    }
+
+    /* Stack layouts */
+    .grid,
+    .cards,
+    .dashboard-grid,
+    .features-grid,
+    .two-column,
+    .split-layout,
+    .analysis-layout {
+        display: grid;
+        grid-template-columns: 1fr !important;
+        width: 100%;
+    }
+
+    /* Cards */
+    .card,
+    .panel,
+    .analysis-card,
+    .result-card {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    /* Headings */
+    h1 {
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+        line-height: 1.15;
+    }
+
+    h2 {
+        font-size: clamp(1.4rem, 6vw, 2rem);
+    }
+
+    h3 {
+        font-size: 1.15rem;
+    }
+
+    /* Buttons */
+    button,
+    .btn,
+    .button {
+        max-width: 100%;
+    }
+
+    /* Forms */
+    input,
+    textarea,
+    select {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    /* Tables */
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 600px;
+    }
+
+    /* Metrics */
+    .metrics,
+    .metric-grid,
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    /* Voice recorder */
+    .recorder,
+    .recording-panel,
+    .voice-recorder {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    /* Waveform */
+    .waveform,
+    .audio-waveform {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    /* Result sections */
+    .result,
+    .results,
+    .analysis-result {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+}
+
+
+/* ---------- SMALL PHONES ---------- */
+@media (max-width: 480px) {
+
+    .container,
+    .main-container,
+    .content,
+    .dashboard,
+    main {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .metrics,
+    .metric-grid,
+    .stats-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    button,
+    .btn,
+    .button {
+        width: 100%;
+        min-height: 44px;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    h2 {
+        font-size: 1.35rem;
+    }
+
+    .card,
+    .panel,
+    .analysis-card,
+    .result-card {
+        padding: 14px;
+    }
+}
