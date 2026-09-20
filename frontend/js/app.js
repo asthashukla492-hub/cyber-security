@@ -646,7 +646,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const anomalies = data.detectedAnomalies || [];
       if (anomalies.length > 0) {
         els.voiceAnomalyTags.innerHTML = anomalies.map(a => `
-          <span class="anomaly-tag">⚠️ ${escapeHtml(a)}</span>
+          <span class="anomaly-tag">⚠️ ${escapeHtml(typeof a === 'string' ? a : (a.name || a.type || a.label || JSON.stringify(a)))}</span>
         `).join('');
       } else {
         els.voiceAnomalyTags.innerHTML = `<span class="anomaly-tag-clean">✓ No synthetic neural markers detected. Authentic biological speech envelope.</span>`;
